@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Scorecard Result · Tracy Harris Co</title>
+  <meta name="description" content="Your personalised Freedom Filled® Business Scorecard result and the next right step." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#f6f4f1" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/purepurposekh/tracy-harris-brand-kit@main/styles/fonts.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/purepurposekh/tracy-harris-brand-kit@main/styles/tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='24' fill='%236e8e77'/></svg>" />
+</head>
+<body data-brand="ffb">
+
+  <header class="topbar">
+    <a href="index.html" class="topbar__brand" aria-label="Tracy Harris Co home">
+      <span class="topbar__dot" aria-hidden="true"></span>
+      Tracy Harris Co
+    </a>
+    <span class="topbar__tag" id="topbarTag">Your Scorecard Result</span>
+  </header>
+
+  <div class="results-shell">
+
+    <article class="letter">
+      <p class="letter__kicker" id="resultKicker">Your Scorecard result</p>
+      <p class="letter__greeting" id="resultGreeting">Hey lovely,</p>
+      <h1 class="letter__title" id="resultTitle">Loading your result.</h1>
+      <p class="letter__body" id="resultBody"></p>
+
+      <section class="scores" id="scoresGrid" aria-label="Pillar scores"></section>
+
+      <div class="focus-note" id="focusNote" hidden>
+        <p class="focus-note__tag" id="focusTag">Your focus area</p>
+        <p class="focus-note__text" id="focusText"></p>
+      </div>
+
+      <div class="route-cta" id="routeCta" hidden>
+        <p class="route-cta__eyebrow" id="ctaEyebrow"></p>
+        <h2 class="route-cta__title" id="ctaTitle"></h2>
+        <p class="route-cta__body" id="ctaBody"></p>
+        <a class="route-cta__btn" id="ctaBtn" href="#">Next step</a>
+        <p class="route-cta__sub" id="ctaSub"></p>
+      </div>
+
+      <div class="tools" id="toolsSection" hidden>
+        <p class="eyebrow">Yours to take</p>
+        <h2 class="tools__title">Your tools, <em>delivered</em>.</h2>
+        <ul class="tools__list" id="toolsList"></ul>
+      </div>
+
+      <div class="signoff">
+        <p class="signoff__body" id="signoffBody">Take what serves you, leave what does not. Your business is allowed to be yours.</p>
+        <p class="signoff__name">Tracy.</p>
+      </div>
+    </article>
+
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 Tracy Harris Co. &middot; <em>Freedom Filled®</em> is a registered trademark.</p>
+  </footer>
+
+  <script>
+    // ============================================================
+    // FREEDOM FILLED® BUSINESS SCORECARD · result router v1
+    // 4 routes: Ready FFB · Workshop fit · FRESH-first · Free nurture
+    // Pre-qualifier gates applied before scoring routes.
+    // ============================================================
+
+    const PILLARS = [
+      { id: 'F.R.E.S.H.', name: 'F.R.E.S.H.', prefix: 'fresh_', color: '#6e8e77' },
+      { id: 'Build',      name: 'Build',      prefix: 'build_', color: '#1e3735' },
+      { id: 'Sell',       name: 'Sell',       prefix: 'sell_',  color: '#243531' },
+      { id: 'Lead',       name: 'Lead',       prefix: 'lead_',  color: '#788E75' },
+    ];
+
+    const RIGHT_FIT_MODELS = ['coaching', 'course', 'membership', 'service', 'creative', 'exploring'];
+
+    const ROUTES = {
+      ready_ffb: {
+        kicker: 'Your Scorecard result',
+        title: 'You are ready for your <em>next brave step</em>.',
+        body:
+          'Your answers show a woman with real expertise, clear desire and enough foundation to move. ' +
+          'There may still be pieces to strengthen, of course there are. ' +
+          'But this is not a "go learn more for six months" result. ' +
+          'This is a "get the right support around you and build this properly" result.',
+        focusTag: 'Where to focus first',
+        ctaEyebrow: 'Your next step',
+        ctaTitle: 'Apply for Freedom Filled® Business',
+        ctaBody:
+          'Inside FFB, this is exactly what we do. We take the offer, message, model, selling rhythm and leadership container, and we build a freedom-filled business around the life you actually want.',
+        ctaBtnLabel: 'Apply and book your call →',
+        ctaBtnHref: 'https://tracyharris.co/ffb',
+        ctaSub: 'Application, not checkout. We talk first, then decide together.',
+        tools: [
+          'Your personalised FFB Focus Map (the pillars and the milestones to focus on)',
+          'Application Prep Notes drawn from your answers',
+          'The FFB Member Wins Catalogue (four real woman-by-woman stories)'
+        ],
+        topbar: 'Ready for FFB'
+      },
+      workshop_fit: {
+        kicker: 'Your Scorecard result',
+        title: 'You are <em>closer</em> than you think.',
+        body:
+          'Your answers show that the desire is there, and so is the expertise. ' +
+          'What is missing is not more noise. It is a clean next step. ' +
+          'A way to see the pathway, understand what needs attention first, and stop trying to fix everything at once.',
+        focusTag: 'Where to focus first',
+        ctaEyebrow: 'Your next step',
+        ctaTitle: 'The next paid masterclass',
+        ctaBody:
+          'Come and let me show you how the Freedom Filled Pathway works, and where your business is asking for support. AUD $100, two hours, deeply practical.',
+        ctaBtnLabel: 'Save your seat →',
+        ctaBtnHref: 'https://tracyharris.co/workshop',
+        ctaSub: 'Replay included. Q&A live with Tracy.',
+        tools: [
+          'Your Workshop Focus Map for what to listen for',
+          'A 3-part email guide for your lowest pillar',
+          'The Million Dollar Message™ teaser'
+        ],
+        topbar: 'Workshop fit'
+      },
+      fresh_first: {
+        kicker: 'Your Scorecard result',
+        title: 'Your business will follow when the <em>foundation</em> steadies.',
+        body:
+          'Beautiful, your answers are not a failure. They are information. ' +
+          'And what they are telling us is that your body, rhythms, relationships, environment or inner world need tending before more strategy will truly hold. ' +
+          'This is exactly why F.R.E.S.H. exists. Not as a side conversation, but as the foundation for sustainable business growth.',
+        focusTag: 'Where to focus first',
+        ctaEyebrow: 'Your next step',
+        ctaTitle: 'The F.R.E.S.H. Reset',
+        ctaBody:
+          'Five days. One short audio each morning. Tracy walks you through Fitness, Relationships, Environment, Self and Hustle. Free. Beautiful. Designed to steady the foundation.',
+        ctaBtnLabel: 'Begin the F.R.E.S.H. Reset →',
+        ctaBtnHref: 'https://tracyharris.co/fresh-reset',
+        ctaSub: 'You can come back to the Scorecard once the foundation feels steadier.',
+        tools: [
+          'Tracy\'s Sunday Reset Worksheet',
+          'F.R.E.S.H. OS Lite (your weekly minimums and maximums)',
+          'The full F.R.E.S.H. Workbook download'
+        ],
+        topbar: 'F.R.E.S.H.-first'
+      },
+      free_nurture: {
+        kicker: 'Your Scorecard result',
+        title: 'You are at the very <em>start</em>, beautiful.',
+        body:
+          'And that is not a bad place to be. It simply means we begin gently and clearly. ' +
+          'You do not need to rush into a mentorship before you know what you are here to build, who you are called to serve, and what kind of business would support your life.',
+        focusTag: 'Where to begin',
+        ctaEyebrow: 'Your next step',
+        ctaTitle: 'The Freedom Filled starter playlist',
+        ctaBody:
+          'Five of my most-loved podcast episodes for getting started. Listen on a walk, in the car, while folding washing. Let the language, stories and frameworks begin to give shape to what is already stirring in you.',
+        ctaBtnLabel: 'Listen to the starter playlist →',
+        ctaBtnHref: 'https://tracyharris.co/start-here',
+        ctaSub: 'No pressure. Just a place to begin.',
+        tools: [
+          'The Starter Reflection Guide',
+          'A 5-day gentle nurture sequence in your inbox',
+          'Top 5 podcast episodes for women just starting out'
+        ],
+        topbar: 'Starting out'
+      }
+    };
+
+    function getPre() {
+      try { return JSON.parse(sessionStorage.getItem('ffb-scorecard-pre') || 'null'); } catch (e) { return null; }
+    }
+
+    function getAnswers() {
+      try {
+        const raw = sessionStorage.getItem('ffb-scorecard-final');
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      const hash = window.location.hash;
+      if (hash && hash.indexOf('#a=') === 0) {
+        try {
+          const encoded = decodeURIComponent(hash.slice(3));
+          return JSON.parse(atob(encoded));
+        } catch (e) { return null; }
+      }
+      return null;
+    }
+
+    function computeScores(answers) {
+      return PILLARS.map(function (p) {
+        let sum = 0, count = 0;
+        Object.keys(answers).forEach(function (k) {
+          if (k.indexOf(p.prefix) === 0) { sum += answers[k]; count += 1; }
+        });
+        const avg = count === 0 ? 0 : sum / count;
+        const pct = Math.round((avg / 5) * 100);
+        return Object.assign({}, p, { avg: avg, pct: pct, count: count });
+      });
+    }
+
+    function determineRoute(scores, pre) {
+      const fresh = scores.find(function (s) { return s.id === 'F.R.E.S.H.'; });
+      const overall = scores.reduce(function (sum, s) { return sum + s.pct; }, 0) / scores.length;
+      const lowestPillar = scores.reduce(function (a, b) { return b.pct < a.pct ? b : a; }, scores[0]);
+      const businessScores = scores.filter(function (s) { return s.id !== 'F.R.E.S.H.'; });
+      const businessAvg = businessScores.reduce(function (sum, s) { return sum + s.pct; }, 0) / businessScores.length;
+      const minBusinessPct = Math.min.apply(null, businessScores.map(function (s) { return s.pct; }));
+
+      const rightFit = pre && RIGHT_FIT_MODELS.indexOf(pre.model) !== -1;
+
+      // Hard gate 1: Wrong-fit business model OR overall < 35% → Free nurture
+      if (!rightFit || overall < 35) {
+        return { key: 'free_nurture', overall: overall, lowest: lowestPillar };
+      }
+
+      // Hard gate 2: FRESH < 45% → FRESH-first regardless of business score
+      if (fresh.pct < 45) {
+        return { key: 'fresh_first', overall: overall, lowest: lowestPillar };
+      }
+
+      // Score-based: Ready FFB
+      if (overall >= 65 && minBusinessPct >= 45 && fresh.pct >= 50) {
+        return { key: 'ready_ffb', overall: overall, lowest: lowestPillar };
+      }
+
+      // Score-based: Workshop fit
+      if (overall >= 45 && overall <= 75 && fresh.pct >= 50) {
+        return { key: 'workshop_fit', overall: overall, lowest: lowestPillar };
+      }
+
+      // Default fallback: Workshop fit (mid-range, business-ready, FRESH OK)
+      if (fresh.pct >= 50 && businessAvg >= 40) {
+        return { key: 'workshop_fit', overall: overall, lowest: lowestPillar };
+      }
+
+      return { key: 'free_nurture', overall: overall, lowest: lowestPillar };
+    }
+
+    function pillarFocusCopy(pillarId) {
+      switch (pillarId) {
+        case 'F.R.E.S.H.':
+          return 'Your foundation needs tending. The business is there to serve the life, not the other way around. When F.R.E.S.H. slips, the business does too.';
+        case 'Build':
+          return 'Your offer foundation is where to focus first. Get clear on who you serve, what you solve, and how you talk about it, and every other pillar gets easier.';
+        case 'Sell':
+          return 'Selling is the gap between starting and thriving. Not pushier, not louder. Just more consistent. This is where the muscle gets built.';
+        case 'Lead':
+          return 'You have built and you are selling, but every decision still runs through you. Leading is the pillar that makes your business scalable and you sustainable.';
+        default:
+          return '';
+      }
+    }
+
+    function render() {
+      const answers = getAnswers();
+      const pre = getPre();
+      const $grid = document.getElementById('scoresGrid');
+
+      if (!answers || Object.keys(answers).length === 0) {
+        $grid.innerHTML = '<p style="text-align:center;color:var(--p-mute);padding:32px 0;">No Scorecard data found. <a href="capture.html" style="color:var(--p-sage);">Take the Scorecard first</a>.</p>';
+        return;
+      }
+
+      const scores = computeScores(answers);
+      const routeResult = determineRoute(scores, pre);
+      const route = ROUTES[routeResult.key];
+      const focus = routeResult.lowest;
+
+      // Topbar tag
+      document.getElementById('topbarTag').textContent = route.topbar;
+
+      // Letter
+      document.getElementById('resultKicker').textContent = route.kicker;
+      const greeting = pre && pre.firstName ? 'Hey ' + pre.firstName + ',' : 'Hey lovely,';
+      document.getElementById('resultGreeting').textContent = greeting;
+      document.getElementById('resultTitle').innerHTML = route.title;
+      document.getElementById('resultBody').textContent = route.body;
+
+      // Scores
+      $grid.innerHTML = '';
+      scores.forEach(function (s) {
+        const card = document.createElement('div');
+        card.className = 'score' + (s.id === focus.id ? ' score--focus' : '');
+        card.innerHTML =
+          '<span class="score__dot" style="background:' + s.color + ';"></span>' +
+          '<div class="score__info">' +
+            '<span class="score__name">' + s.name + '</span>' +
+            '<div class="score__bar"><div class="score__bar-fill" style="width:0"></div></div>' +
+          '</div>' +
+          '<span class="score__value">' + s.pct + '%</span>';
+        $grid.appendChild(card);
+      });
+
+      const animate = function () {
+        document.querySelectorAll('.score').forEach(function (el, i) {
+          const fill = el.querySelector('.score__bar-fill');
+          if (fill) fill.style.width = scores[i].pct + '%';
+        });
+      };
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) animate();
+      else setTimeout(animate, 60);
+
+      // Focus note
+      const $focusNote = document.getElementById('focusNote');
+      const $focusTag = document.getElementById('focusTag');
+      const $focusText = document.getElementById('focusText');
+      $focusNote.hidden = false;
+      $focusTag.textContent = route.focusTag + ' · ' + focus.name;
+      $focusText.textContent = pillarFocusCopy(focus.id);
+
+      // Route CTA
+      const $cta = document.getElementById('routeCta');
+      $cta.hidden = false;
+      document.getElementById('ctaEyebrow').textContent = route.ctaEyebrow;
+      document.getElementById('ctaTitle').textContent = route.ctaTitle;
+      document.getElementById('ctaBody').textContent = route.ctaBody;
+      const $btn = document.getElementById('ctaBtn');
+      $btn.textContent = route.ctaBtnLabel;
+      $btn.setAttribute('href', route.ctaBtnHref);
+      document.getElementById('ctaSub').textContent = route.ctaSub;
+
+      // Tools
+      const $toolsSection = document.getElementById('toolsSection');
+      const $toolsList = document.getElementById('toolsList');
+      $toolsSection.hidden = false;
+      $toolsList.innerHTML = '';
+      route.tools.forEach(function (t) {
+        const li = document.createElement('li');
+        li.className = 'tool';
+        li.textContent = t;
+        $toolsList.appendChild(li);
+      });
+
+      // Save full result for reference / debug
+      window.__scorecardResult = { route: routeResult.key, scores: scores, focus: focus, pre: pre };
+
+      // DRAFT NOTE: this is where the AC tags fire for Quiz: Completed, Quiz: Route - X, Quiz: Focus - Y.
+      // Wired to Worker endpoint after Karl approves the draft.
+    }
+
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Freedom Filled® Business Scorecard · Tracy Harris Co</title>
+  <meta name="description" content="Twenty honest questions across F.R.E.S.H., Build, Sell and Lead. Find what is asking for your attention first." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#f6f4f1" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/purepurposekh/tracy-harris-brand-kit@main/styles/fonts.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/purepurposekh/tracy-harris-brand-kit@main/styles/tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='24' fill='%236e8e77'/></svg>" />
+  <style>input, button { font-size: 16px; }</style>
+</head>
+<body data-brand="ffb">
+
+  <noscript>
+    <div style="padding:48px 24px; text-align:center; max-width:560px; margin:0 auto; font-family:Georgia, serif;">
+      <h1 style="font-size:28px; margin:0 0 16px; color:#1e3735;">JavaScript required</h1>
+      <p style="color:#313131; margin:0 0 24px;">This Scorecard needs JavaScript enabled to run. If you would prefer, send Tracy an email and she will talk you through it directly.</p>
+      <a href="mailto:hello@tracyharris.co" style="color:#6e8e77;">hello@tracyharris.co</a>
+    </div>
+  </noscript>
+
+  <header class="topbar">
+    <a href="index.html" class="topbar__brand" aria-label="Tracy Harris Co home">
+      <span class="topbar__dot" aria-hidden="true"></span>
+      Tracy Harris Co
+    </a>
+    <span class="topbar__tag">Freedom Filled® Business Scorecard</span>
+  </header>
+
+  <div class="quiz-shell">
+
+    <header class="quiz-progress" id="quizProgress" role="banner">
+      <div class="quiz-progress__meta">
+        <span id="progressLabel">Question 1 of 20</span>
+        <span class="quiz-progress__pillar" id="progressPillar">F.R.E.S.H.</span>
+      </div>
+      <div class="quiz-progress__bar" aria-hidden="true">
+        <div class="quiz-progress__fill" id="progressFill"></div>
+      </div>
+    </header>
+
+    <main class="quiz-body" role="main">
+
+      <div class="quiz-splash" id="quizSplash" hidden>
+        <div class="quiz-splash__inner">
+          <p class="quiz-splash__eyebrow" id="splashEyebrow">A breath</p>
+          <div class="quiz-splash__copy" id="splashCopy"></div>
+          <button type="button" class="quiz-splash__cta" id="splashContinue">Continue →</button>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="quizCard">
+        <h1 class="quiz-question" id="quizQuestion" aria-live="polite">Loading</h1>
+        <div class="quiz-answers" id="quizAnswers" role="radiogroup" aria-labelledby="quizQuestion"></div>
+      </div>
+
+    </main>
+
+    <nav class="quiz-nav" aria-label="Scorecard navigation">
+      <button type="button" class="quiz-nav__back" id="backBtn" aria-label="Previous question" disabled>
+        ←&nbsp;&nbsp;Back
+      </button>
+      <span id="navStatus" style="font-family:var(--f-sans); font-size:11px; font-weight:500; letter-spacing:.24em; text-transform:uppercase; color:var(--p-mute);">
+        Select to answer
+      </span>
+    </nav>
+
+  </div>
+
+  <script>
+    // ============================================================
+    // FREEDOM FILLED® BUSINESS SCORECARD · question set v1
+    // 5/5/5/5 across F.R.E.S.H., Build, Sell, Lead.
+    // FRESH first as the foundation, mapped 1-to-1 to F-R-E-S-H sub-pillars.
+    // Voice: Tracy. Scale: Not yet → Absolutely.
+    // ============================================================
+
+    const QUESTIONS = [
+      // F.R.E.S.H. (foundation)
+      { id: 'fresh_1', pillar: 'F.R.E.S.H.', sub: 'Fitness',       text: 'My body, energy and health feel strong enough to hold the business I am building.' },
+      { id: 'fresh_2', pillar: 'F.R.E.S.H.', sub: 'Relationships', text: 'The people closest to me are being intentionally loved, not constantly getting what is left of me.' },
+      { id: 'fresh_3', pillar: 'F.R.E.S.H.', sub: 'Environment',   text: 'My physical, digital and emotional environment helps me feel clean, stable and grounded.' },
+      { id: 'fresh_4', pillar: 'F.R.E.S.H.', sub: 'Self',          text: 'I make space for my own care, development and support without needing to earn it first.' },
+      { id: 'fresh_5', pillar: 'F.R.E.S.H.', sub: 'Hustle',        text: 'I know the work I am here to do, and I bring steady, joyful discipline to it.' },
+
+      // BUILD
+      { id: 'build_1', pillar: 'Build', sub: 'Offer clarity',    text: 'I can say what I do in one clear sentence, and it feels honest when I say it.' },
+      { id: 'build_2', pillar: 'Build', sub: 'Right-fit woman',  text: 'I know the right-fit woman I am here to serve, including what she wants, what she needs, and what she has already tried.' },
+      { id: 'build_3', pillar: 'Build', sub: 'Promise + pathway',text: 'My offer has a clear promise, a beautiful pathway, and a way to help her move from where she is to where she wants to be.' },
+      { id: 'build_4', pillar: 'Build', sub: 'Pricing',          text: 'My pricing feels anchored in the value and transformation I deliver.' },
+      { id: 'build_5', pillar: 'Build', sub: 'Framework',        text: 'My framework or method turns my expertise into something I can teach, not just something I can do.' },
+
+      // SELL
+      { id: 'sell_1', pillar: 'Sell', sub: 'Attract',       text: 'I have a simple way for new right-fit women to find me each week.' },
+      { id: 'sell_2', pillar: 'Sell', sub: 'Content path',  text: 'My content is not random. It gently moves women from curiosity to trust to a clear next step.' },
+      { id: 'sell_3', pillar: 'Sell', sub: 'Invite',        text: 'I can invite someone into my offer with warmth, confidence and no weird pushy energy.' },
+      { id: 'sell_4', pillar: 'Sell', sub: 'Clear next step',text: 'I have one clear path that helps interested women take the next step with me.' },
+      { id: 'sell_5', pillar: 'Sell', sub: 'Numbers',       text: 'I look at my numbers with calm responsibility, so I can make grounded decisions instead of emotional ones.' },
+
+      // LEAD
+      { id: 'lead_1', pillar: 'Lead', sub: 'Client experience',  text: 'My clients feel beautifully held from the moment they join.' },
+      { id: 'lead_2', pillar: 'Lead', sub: 'Facilitate',         text: 'I can facilitate transformation without carrying every outcome on my own shoulders.' },
+      { id: 'lead_3', pillar: 'Lead', sub: 'Rhythms + boundaries',text: 'I have rhythms, boundaries and support that stop the business from relying on me for every small thing.' },
+      { id: 'lead_4', pillar: 'Lead', sub: 'Highest-leverage work', text: 'I spend most of my working time in the work only I can do.' },
+      { id: 'lead_5', pillar: 'Lead', sub: 'Becoming the leader', text: 'I am becoming the leader my next season requires, with more spaciousness, not more pressure.' },
+    ];
+
+    // Tracy-voiced answer scale. Permission-coded, not verdict-coded.
+    const ANSWERS = [
+      { label: 'Not yet',    value: 1 },
+      { label: 'A little',   value: 2 },
+      { label: 'Somewhat',   value: 3 },
+      { label: 'Mostly',     value: 4 },
+      { label: 'Absolutely', value: 5 },
+    ];
+
+    // Splash sections shown BEFORE the question index listed.
+    const SPLASHES = {
+      0: {
+        eyebrow: 'Before we begin',
+        body:
+          '<p>This is not a quiz to tell you what is wrong with you.</p>' +
+          '<p>It is a quiet, honest look at the business you are building, the woman leading it, and the next right step for your freedom-filled future.</p>' +
+          '<p>Take a breath.</p>' +
+          '<p>Answer honestly.</p>' +
+          "<p>Let's see what is asking for your attention.</p>"
+      },
+      5: {
+        eyebrow: 'Now we look at what you are building',
+        body:
+          '<p>Beautiful.</p>' +
+          '<p>Your expertise is already there, lovely.</p>' +
+          '<p>The work is learning how to package it into a clear offer, message and model that feels natural, valuable and yours.</p>' +
+          '<p>When Build is clean, everything else gets lighter.</p>'
+      },
+      10: {
+        eyebrow: 'Now we look at how your work meets the right-fit women',
+        body:
+          '<p>Selling does not need to feel loud or awkward.</p>' +
+          '<p>It can feel like service.</p>' +
+          '<p>A simple invitation. A clear pathway. A confident next step.</p>'
+      },
+      15: {
+        eyebrow: 'Last one',
+        body:
+          '<p>This is where your business becomes a beautiful experience, not just a clever offer.</p>' +
+          '<p>Leadership is how you hold the container, protect your energy, and help women receive the transformation they came for.</p>' +
+          '<p>Not by doing everything.</p>' +
+          '<p>By leading by design.</p>'
+      },
+    };
+
+    const STORAGE_KEY = 'ffb-scorecard-state';
+    const PRE_KEY = 'ffb-scorecard-pre';
+    const FINAL_KEY = 'ffb-scorecard-final';
+
+    // Guard: pre-capture must be done.
+    let pre = null;
+    try { pre = JSON.parse(sessionStorage.getItem(PRE_KEY) || 'null'); } catch (e) {}
+    if (!pre) {
+      // Allow direct quiz access during draft for review, but persist a marker.
+      pre = { firstName: '', email: '', model: '', season: '' };
+    }
+
+    const state = { current: 0, answers: {}, splashShown: {} };
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed.current === 'number' && parsed.answers) {
+          state.current = Math.min(parsed.current, QUESTIONS.length - 1);
+          state.answers = parsed.answers;
+          state.splashShown = parsed.splashShown || {};
+        }
+      }
+    } catch (e) {}
+
+    const $q = document.getElementById('quizQuestion');
+    const $a = document.getElementById('quizAnswers');
+    const $fill = document.getElementById('progressFill');
+    const $label = document.getElementById('progressLabel');
+    const $pillar = document.getElementById('progressPillar');
+    const $back = document.getElementById('backBtn');
+    const $status = document.getElementById('navStatus');
+    const $splash = document.getElementById('quizSplash');
+    const $splashEyebrow = document.getElementById('splashEyebrow');
+    const $splashCopy = document.getElementById('splashCopy');
+    const $splashContinue = document.getElementById('splashContinue');
+    const $card = document.getElementById('quizCard');
+    const $progress = document.getElementById('quizProgress');
+
+    let storageAvailable = true;
+    try { sessionStorage.setItem('__test', '1'); sessionStorage.removeItem('__test'); }
+    catch (e) { storageAvailable = false; }
+
+    function persist() {
+      if (!storageAvailable) return;
+      try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+    }
+
+    function showSplash(idx) {
+      const s = SPLASHES[idx];
+      if (!s) return false;
+      $splashEyebrow.textContent = s.eyebrow;
+      $splashCopy.innerHTML = s.body;
+      $splash.hidden = false;
+      $card.hidden = true;
+      $progress.style.opacity = '0.4';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return true;
+    }
+
+    function hideSplash() {
+      $splash.hidden = true;
+      $card.hidden = false;
+      $progress.style.opacity = '1';
+    }
+
+    function renderQuestion() {
+      hideSplash();
+      const q = QUESTIONS[state.current];
+      const total = QUESTIONS.length;
+      const pct = Math.round(((state.current + 1) / total) * 100);
+      $fill.style.width = pct + '%';
+      $label.textContent = 'Question ' + (state.current + 1) + ' of ' + total;
+      $pillar.textContent = q.pillar;
+      $q.textContent = q.text;
+      $a.innerHTML = '';
+      ANSWERS.forEach(function (ans) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'quiz-answer';
+        btn.setAttribute('role', 'radio');
+        btn.setAttribute('aria-checked', state.answers[q.id] === ans.value ? 'true' : 'false');
+        btn.textContent = ans.label;
+        if (state.answers[q.id] === ans.value) btn.classList.add('is-selected');
+        btn.addEventListener('click', function () { select(ans.value); });
+        $a.appendChild(btn);
+      });
+      $back.disabled = state.current === 0;
+      if (state.answers[q.id]) {
+        $status.textContent = state.current + 1 < total ? 'Loading next' : 'Calculating results';
+      } else {
+        $status.textContent = 'Select to answer';
+      }
+    }
+
+    function maybeShowSplashThenQuestion() {
+      if (SPLASHES[state.current] && !state.splashShown[state.current]) {
+        showSplash(state.current);
+      } else {
+        renderQuestion();
+      }
+    }
+
+    $splashContinue.addEventListener('click', function () {
+      state.splashShown[state.current] = true;
+      persist();
+      renderQuestion();
+    });
+
+    function select(value) {
+      const q = QUESTIONS[state.current];
+      state.answers[q.id] = value;
+      persist();
+      renderQuestion();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const delay = reduce ? 180 : 600;
+      setTimeout(function () {
+        if (state.current + 1 < QUESTIONS.length) {
+          state.current += 1;
+          persist();
+          maybeShowSplashThenQuestion();
+        } else {
+          const payload = JSON.stringify(state.answers);
+          if (storageAvailable) {
+            try { sessionStorage.setItem(FINAL_KEY, payload); } catch (e) {}
+          }
+          // DRAFT NOTE: this is where the AC tag fires for Quiz: Completed and route.
+          const hash = encodeURIComponent(btoa(payload));
+          window.location.href = 'results.html#a=' + hash;
+        }
+      }, delay);
+    }
+
+    $back.addEventListener('click', function () {
+      if (state.current > 0) { state.current -= 1; persist(); renderQuestion(); }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if ($splash.hidden === false) {
+        if (e.key === 'Enter' || e.key === ' ') { $splashContinue.click(); e.preventDefault(); }
+        return;
+      }
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= 5) { select(n); e.preventDefault(); return; }
+      if (e.key === 'ArrowLeft' && !$back.disabled) { $back.click(); e.preventDefault(); }
+    });
+
+    maybeShowSplashThenQuestion();
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Before we begin · Freedom Filled® Business Scorecard · Tracy Harris Co</title>
+  <meta name="description" content="Two quick questions and your email, then we begin." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#f6f4f1" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/purepurposekh/tracy-harris-brand-kit@main/styles/fonts.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/purepurposekh/tracy-harris-brand-kit@main/styles/tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='24' fill='%236e8e77'/></svg>" />
+  <style>input, select, button { font-size: 16px; }</style>
+</head>
+<body data-brand="ffb">
+
+  <header class="topbar">
+    <a href="index.html" class="topbar__brand" aria-label="Tracy Harris Co home">
+      <span class="topbar__dot" aria-hidden="true"></span>
+      Tracy Harris Co
+    </a>
+    <span class="topbar__tag">Before we begin</span>
+  </header>
+
+  <main class="capture-shell">
+    <div class="capture-card">
+      <p class="capture-card__eyebrow">Two quick questions</p>
+      <h1 class="capture-card__title">Hey lovely. <em>Before we begin.</em></h1>
+      <p class="capture-card__lede">
+        Two questions and your email, so I can send your personalised result and the right next step. Then we begin.
+      </p>
+
+      <form id="captureForm" class="capture-form" novalidate>
+
+        <div class="capture-form__field">
+          <label for="firstName" class="capture-form__label">Your first name</label>
+          <input id="firstName" name="firstName" type="text" autocomplete="given-name" required class="capture-form__input" placeholder="What you go by" />
+        </div>
+
+        <div class="capture-form__field">
+          <label for="email" class="capture-form__label">Your email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required class="capture-form__input" placeholder="your@email.com" />
+        </div>
+
+        <div class="capture-form__field">
+          <label for="model" class="capture-form__label">What expertise are you here to turn into a business?</label>
+          <select id="model" name="model" required class="capture-form__select">
+            <option value="">Choose one</option>
+            <option value="coaching">Coaching</option>
+            <option value="course">Course</option>
+            <option value="membership">Membership</option>
+            <option value="service">Done-for-you service</option>
+            <option value="creative">Creative work or product</option>
+            <option value="exploring">Still figuring it out</option>
+            <option value="ecommerce">E-commerce or physical product</option>
+          </select>
+        </div>
+
+        <div class="capture-form__field">
+          <label for="season" class="capture-form__label">What best describes your business season right now?</label>
+          <select id="season" name="season" required class="capture-form__select">
+            <option value="">Choose one</option>
+            <option value="idea">Just an idea, not started yet</option>
+            <option value="building">Building, 0 to 1 year in</option>
+            <option value="growing">Growing, 1 to 3 years in</option>
+            <option value="established">Established, 3 plus years in</option>
+          </select>
+        </div>
+
+        <button type="submit" class="capture-form__submit">Begin the Scorecard →</button>
+
+        <p class="capture-form__note">
+          Your email is for your result and a few thoughtful messages from Tracy. Unsubscribe any time.
+        </p>
+
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Tracy Harris Co. &middot; <em>Freedom Filled®</em> is a registered trademark.</p>
+  </footer>
+
+  <script>
+    const STORAGE_KEY = 'ffb-scorecard-pre';
+    document.getElementById('captureForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const firstName = document.getElementById('firstName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const model = document.getElementById('model').value;
+      const season = document.getElementById('season').value;
+      if (!firstName || !email || !model || !season) return;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('email').focus();
+        return;
+      }
+      const utmSource = new URLSearchParams(location.search).get('utm_source') || '';
+      const utmMedium = new URLSearchParams(location.search).get('utm_medium') || '';
+      const utmCampaign = new URLSearchParams(location.search).get('utm_campaign') || '';
+      const pre = { firstName, email, model, season, utmSource, utmMedium, utmCampaign, capturedAt: Date.now() };
+      try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(pre)); } catch (err) {}
+      // DRAFT NOTE: this is where the AC create-or-update-contact + Quiz: Started tag fires.
+      // Wired to the Worker endpoint after Karl approves the draft. For now, store + advance.
+      window.location.href = 'quiz.html';
+    });
+  </script>
+</body>
+</html>
