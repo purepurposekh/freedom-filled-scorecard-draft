@@ -36,10 +36,36 @@
 
       <section class="scores" id="scoresGrid" aria-label="Pillar scores"></section>
 
-      <div class="focus-note" id="focusNote" hidden>
-        <p class="focus-note__tag" id="focusTag">Your focus area</p>
-        <p class="focus-note__text" id="focusText"></p>
-      </div>
+      <section class="milestone" id="milestoneSection" hidden>
+        <p class="milestone__eyebrow" id="milestoneTag">Where to focus first</p>
+        <h2 class="milestone__title" id="milestoneTitle"></h2>
+        <p class="milestone__lede" id="milestoneLede"></p>
+        <details class="milestone__more">
+          <summary>Read more about this</summary>
+          <p id="milestoneDeep"></p>
+        </details>
+      </section>
+
+      <section class="wins" id="winsSection" hidden>
+        <p class="wins__eyebrow">Three quick wins</p>
+        <h2 class="wins__title">Start <em>here</em>.</h2>
+        <p class="wins__sub">The first three moves to make this week, one at a time. Tap each one as you go.</p>
+        <ol class="wins__list" id="winsList"></ol>
+      </section>
+
+      <section class="tracy-moment" id="tracyMoment">
+        <div class="tracy-moment__media">
+          <img id="tracyImg" src="images/tracy.jpg" alt="Tracy Harris" />
+        </div>
+        <div class="tracy-moment__copy">
+          <p class="tracy-moment__eyebrow">A note from Tracy</p>
+          <h3 class="tracy-moment__title" id="tracyMomentTitle">Hey, I see you.</h3>
+          <p class="tracy-moment__body" id="tracyMomentBody">
+            Whatever your Scorecard surfaced today, I want you to know that this is good news. You now have language for what is asking for your attention. That is the start of every freedom-filled chapter I have ever lived. Take what serves you, leave what does not. Your business is allowed to be yours.
+          </p>
+          <p class="tracy-moment__sign">Xx Tracy.</p>
+        </div>
+      </section>
 
       <div class="route-cta" id="routeCta" hidden>
         <p class="route-cta__eyebrow" id="ctaEyebrow"></p>
@@ -49,11 +75,24 @@
         <p class="route-cta__sub" id="ctaSub"></p>
       </div>
 
-      <div class="tools" id="toolsSection" hidden>
+      <section class="tools" id="toolsSection" hidden>
         <p class="eyebrow">Yours to take</p>
         <h2 class="tools__title">Your tools, <em>delivered</em>.</h2>
         <ul class="tools__list" id="toolsList"></ul>
-      </div>
+      </section>
+
+      <section class="save-share" id="saveShare">
+        <div class="save-share__inner">
+          <p class="save-share__eyebrow">Keep this close</p>
+          <h3 class="save-share__title">Save your Scorecard.</h3>
+          <p class="save-share__sub">Bookmark this page or send the link to yourself. Your tap-to-tick wins save here too.</p>
+          <div class="save-share__actions">
+            <button type="button" class="save-share__btn" id="copyLinkBtn">Copy link</button>
+            <a class="save-share__btn save-share__btn--quiet" id="emailMeBtn" href="#">Email me this</a>
+          </div>
+          <p class="save-share__note" id="saveShareNote" hidden></p>
+        </div>
+      </section>
 
       <div class="signoff">
         <p class="signoff__body" id="signoffBody">Take what serves you, leave what does not. Your business is allowed to be yours.</p>
@@ -82,6 +121,50 @@
     ];
 
     const RIGHT_FIT_MODELS = ['coaching', 'course', 'membership', 'service', 'creative', 'exploring'];
+
+    // Per-pillar deeper milestone copy + 3 quick wins. Tracy voice.
+    const PILLAR_INSIGHTS = {
+      'F.R.E.S.H.': {
+        title: 'Your foundation is asking for tending.',
+        lede: 'When F.R.E.S.H. is depleted, every business decision feels heavier than it should. The work becomes hustle. The wins become exhausting. The spaciousness you came for stops showing up.',
+        deep: 'F.R.E.S.H. is not a side conversation. It is the foundation that makes Build, Sell and Lead actually sustainable. If FRESH is your lowest pillar, the next move is not more strategy. It is fewer drains, clearer minimums, deeper rest, and the truth that your business is allowed to be small enough to fit your life.',
+        wins: [
+          'Block one non-negotiable hour this week for something that is yours alone. Not work. Not family. Defend it like a meeting with your most important client.',
+          'Name one relationship draining you this season and one filling you up. Spend more time with the filler. Less with the drainer. No drama, just intention.',
+          'Look at next week\'s calendar through the lens of "is this the life I actually want?" If the answer is no, change one thing. One is enough.'
+        ]
+      },
+      'Build': {
+        title: 'Your offer is asking for clarity.',
+        lede: 'A beautiful business is built on a beautiful offer. When Build is unclear, every other pillar limps. Your message gets vague. Your pricing gets shaky. Your sales conversations stall.',
+        deep: 'Build is where you turn your expertise into something worth paying for and easy to explain. The next move is not more content. It is one more honest hour with the question: what am I actually selling, and to whom?',
+        wins: [
+          'Write your offer in one sentence. "I help [her] go from [where she is] to [where she wants to be] through [your method]." Say it out loud. Refine until it feels honest.',
+          'Choose one right-fit woman. Describe her Tuesday morning, what she Googles at 2am, what she has tried before. Specific beats generic.',
+          'Audit your pricing against your offer clarity. If there is a gap between what you deliver and what you charge, close it this week.'
+        ]
+      },
+      'Sell': {
+        title: 'Selling is asking to feel like service.',
+        lede: 'Selling does not need to feel loud, awkward, or constant. When Sell is your gap, it usually means you do not yet have one reliable way to be found and one reliable way to invite.',
+        deep: 'Both are learnable. The next move is not louder. It is choosing one channel and one conversion path and getting deeply consistent for ninety days. Then watching what happens.',
+        wins: [
+          'Map your one reliable lead source. Name it. If you cannot name it, that is your first move. Pick one channel and commit for ninety days.',
+          'Write down your conversion path from first touch to sale. Every step. Find the break point. That is where the next dollar lives.',
+          'Choose launch or evergreen for the next ninety days. Pick one, commit, do not hedge. Clarity of model beats clever hybrid.'
+        ]
+      },
+      'Lead': {
+        title: 'Leadership is asking for spaciousness.',
+        lede: 'When Lead is your gap, the business is running through your nervous system. Every decision, every reply, every fire is yours to carry.',
+        deep: 'The next move is not more tools. It is naming the small handful of decisions only you can make, and the long list of decisions someone else, a tool, or a quieter rhythm can hold for you. Leading by design, not by exhaustion.',
+        wins: [
+          'Document one workflow this week. Pick the thing you do most often and write the SOP as you do it. Next week, hand it off.',
+          'List every decision you made this week. Mark the ones that could be made by someone else, a tool, or a checklist. That is your delegation list.',
+          'Audit your calendar. How many hours are on highest-leverage work versus busywork? If it is less than 60%, there is your leak.'
+        ]
+      }
+    };
 
     const ROUTES = {
       ready_ffb: {
@@ -317,13 +400,64 @@
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) animate();
       else setTimeout(animate, 60);
 
-      // Focus note
-      const $focusNote = document.getElementById('focusNote');
-      const $focusTag = document.getElementById('focusTag');
-      const $focusText = document.getElementById('focusText');
-      $focusNote.hidden = false;
-      $focusTag.textContent = route.focusTag + ' · ' + focus.name;
-      $focusText.textContent = pillarFocusCopy(focus.id);
+      // Milestone (deeper insight on lowest pillar)
+      const insight = PILLAR_INSIGHTS[focus.id] || PILLAR_INSIGHTS['Build'];
+      const $ms = document.getElementById('milestoneSection');
+      $ms.hidden = false;
+      document.getElementById('milestoneTag').textContent = route.focusTag + ' · ' + focus.name;
+      document.getElementById('milestoneTitle').textContent = insight.title;
+      document.getElementById('milestoneLede').textContent = insight.lede;
+      document.getElementById('milestoneDeep').textContent = insight.deep;
+
+      // Quick wins (tap-to-tick, persisted to localStorage by route+pillar)
+      const $winsSection = document.getElementById('winsSection');
+      const $winsList = document.getElementById('winsList');
+      $winsSection.hidden = false;
+      $winsList.innerHTML = '';
+      const winsKey = 'ffb-scorecard-wins-' + focus.id;
+      let tickedWins = {};
+      try { tickedWins = JSON.parse(localStorage.getItem(winsKey) || '{}'); } catch (e) {}
+
+      insight.wins.forEach(function (w, i) {
+        const li = document.createElement('li');
+        li.className = 'win' + (tickedWins[i] ? ' is-ticked' : '');
+        li.innerHTML =
+          '<button type="button" class="win__tick" aria-label="Mark as done">' +
+            '<span class="win__num">' + String(i + 1).padStart(2, '0') + '</span>' +
+            '<span class="win__check" aria-hidden="true">✓</span>' +
+          '</button>' +
+          '<p class="win__text">' + w + '</p>';
+        const btn = li.querySelector('.win__tick');
+        btn.addEventListener('click', function () {
+          li.classList.toggle('is-ticked');
+          tickedWins[i] = li.classList.contains('is-ticked');
+          try { localStorage.setItem(winsKey, JSON.stringify(tickedWins)); } catch (e) {}
+        });
+        $winsList.appendChild(li);
+      });
+
+      // Tracy moment per-route flavour
+      const tracyByRoute = {
+        ready_ffb: {
+          title: 'Hey lovely. I see you, and you are ready.',
+          body: 'Your answers told me what I needed to know. There is real expertise in you, real desire, and enough foundation to move properly. Inside FFB, this is the work we do together. The offer, the message, the model, the rhythm of selling, the leadership of holding it. If you are ready, I am ready. Apply when you are.'
+        },
+        workshop_fit: {
+          title: 'Hey lovely. You are closer than you feel.',
+          body: 'Your answers told me you have the desire and the expertise. What is missing is not more strategy noise. It is one clean next step. Come to the workshop. I will show you the Pathway, and you will leave knowing where to focus first.'
+        },
+        fresh_first: {
+          title: 'Hey lovely. The foundation comes first.',
+          body: 'Your answers told me your body, rhythms, relationships or inner world need tending before more strategy will hold. That is not a failure. That is wisdom. Take the F.R.E.S.H. Reset. Come back to the Scorecard once the foundation feels steadier. Your business will follow.'
+        },
+        free_nurture: {
+          title: 'Hey lovely. You are at the very beginning.',
+          body: 'Your answers told me you are at the start of this chapter. That is a beautiful place to be. Do not rush into a mentorship before you know what you are here to build. Begin gently with the podcast and the free teaching. The clarity will come as you listen.'
+        }
+      };
+      const tm = tracyByRoute[routeResult.key] || tracyByRoute.workshop_fit;
+      document.getElementById('tracyMomentTitle').textContent = tm.title;
+      document.getElementById('tracyMomentBody').textContent = tm.body;
 
       // Route CTA
       const $cta = document.getElementById('routeCta');
@@ -336,17 +470,39 @@
       $btn.setAttribute('href', route.ctaBtnHref);
       document.getElementById('ctaSub').textContent = route.ctaSub;
 
-      // Tools
+      // Tools (with image thumbnails when available)
       const $toolsSection = document.getElementById('toolsSection');
       const $toolsList = document.getElementById('toolsList');
       $toolsSection.hidden = false;
       $toolsList.innerHTML = '';
-      route.tools.forEach(function (t) {
+      route.tools.forEach(function (t, i) {
         const li = document.createElement('li');
         li.className = 'tool';
-        li.textContent = t;
+        const slug = (route.toolImages && route.toolImages[i]) || '';
+        if (slug) {
+          li.classList.add('tool--with-image');
+          li.innerHTML =
+            '<div class="tool__media"><img src="images/' + slug + '" alt="" /></div>' +
+            '<p class="tool__text">' + t + '</p>';
+        } else {
+          li.textContent = t;
+        }
         $toolsList.appendChild(li);
       });
+
+      // Save / share
+      const $copy = document.getElementById('copyLinkBtn');
+      const $email = document.getElementById('emailMeBtn');
+      const $note = document.getElementById('saveShareNote');
+      $copy.addEventListener('click', function () {
+        navigator.clipboard.writeText(window.location.href).then(function () {
+          $note.hidden = false;
+          $note.textContent = 'Link copied. Paste it anywhere.';
+        });
+      });
+      const subj = encodeURIComponent('My Freedom Filled® Business Scorecard result');
+      const bodyTxt = encodeURIComponent('Here is the link to my Scorecard result, so I can come back to it: ' + window.location.href);
+      $email.setAttribute('href', 'mailto:?subject=' + subj + '&body=' + bodyTxt);
 
       // Save full result for reference / debug
       window.__scorecardResult = { route: routeResult.key, scores: scores, focus: focus, pre: pre };
