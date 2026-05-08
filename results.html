@@ -175,6 +175,16 @@
     };
 
     function getPre() {
+      // First check URL params (preview links) so result loads even without sessionStorage.
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('model')) {
+        return {
+          firstName: params.get('name') || 'lovely',
+          email: params.get('email') || '',
+          model: params.get('model'),
+          season: params.get('season') || 'building'
+        };
+      }
       try { return JSON.parse(sessionStorage.getItem('ffb-scorecard-pre') || 'null'); } catch (e) { return null; }
     }
 
