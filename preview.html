@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scorecard Result Previews · Tracy Harris Co</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#f6f4f1" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/purepurposekh/tracy-harris-brand-kit@main/styles/fonts.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/purepurposekh/tracy-harris-brand-kit@main/styles/tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-brand="ffb">
+
+  <header class="topbar">
+    <a href="index.html" class="topbar__brand" aria-label="Tracy Harris Co home">
+      <span class="topbar__dot" aria-hidden="true"></span>
+      Tracy Harris Co
+    </a>
+    <span class="topbar__tag">Result previews</span>
+  </header>
+
+  <main class="landing">
+    <section class="landing__hero">
+      <p class="landing__eyebrow">For Karl + Tracy review</p>
+      <h1 class="landing__title">Result page <em>previews</em>.</h1>
+      <p class="landing__lede">
+        Click through each route to see what every result type looks like, without taking the quiz four times. Each link sets a representative answer set and pre-qualifier model, then renders the result page.
+      </p>
+    </section>
+
+    <section class="landing__pillars" style="grid-template-columns: 1fr;">
+
+      <a class="landing__pillar" id="ready" href="#" style="text-decoration:none; cursor:pointer;">
+        <span class="landing__pillar-eyebrow">Route 1</span>
+        <h2 class="landing__pillar-title">Ready for FFB now</h2>
+        <p>All pillars at 5/5. Right-fit business model. Decisive intent. Sees the FFB application CTA and member wins tools.</p>
+      </a>
+
+      <a class="landing__pillar" id="workshop" href="#" style="text-decoration:none; cursor:pointer;">
+        <span class="landing__pillar-eyebrow">Route 2</span>
+        <h2 class="landing__pillar-title">Workshop fit</h2>
+        <p>FRESH 4/5 (steady), business pillars at 3/5 (mid). Right-fit. Sees the paid masterclass CTA and Workshop Focus Map.</p>
+      </a>
+
+      <a class="landing__pillar" id="fresh" href="#" style="text-decoration:none; cursor:pointer;">
+        <span class="landing__pillar-eyebrow">Route 3</span>
+        <h2 class="landing__pillar-title">FRESH-first</h2>
+        <p>FRESH 2/5 (depleted) but business pillars at 4/5 (capable). Triggers the FRESH-first hard gate regardless of business strength.</p>
+      </a>
+
+      <a class="landing__pillar" id="nurture" href="#" style="text-decoration:none; cursor:pointer;">
+        <span class="landing__pillar-eyebrow">Route 4</span>
+        <h2 class="landing__pillar-title">Free nurture</h2>
+        <p>Very low overall (1-2 across the board). Sees the gentle "you are at the very start" copy and the podcast starter playlist CTA.</p>
+      </a>
+
+    </section>
+
+    <section class="landing__close">
+      <p class="landing__close-eyebrow">For wrong-fit traffic</p>
+      <h2 class="landing__close-title">Ecom + hobbyist <em>routing</em>.</h2>
+      <p>
+        Anyone who picks Ecommerce on the model dropdown gets routed to free nurture regardless of score. This keeps the FFB application path clean. Add <code>&model=ecommerce</code> to any preview link to see this in action.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Tracy Harris Co. &middot; <em>Freedom Filled®</em> is a registered trademark.</p>
+  </footer>
+
+  <script>
+    const HASHES = {
+      ready: 'eyJmcmVzaF8xIjo1LCJmcmVzaF8yIjo1LCJmcmVzaF8zIjo1LCJmcmVzaF80Ijo1LCJmcmVzaF81Ijo1LCJidWlsZF8xIjo1LCJidWlsZF8yIjo1LCJidWlsZF8zIjo1LCJidWlsZF80Ijo1LCJidWlsZF81Ijo1LCJzZWxsXzEiOjUsInNlbGxfMiI6NSwic2VsbF8zIjo1LCJzZWxsXzQiOjUsInNlbGxfNSI6NSwibGVhZF8xIjo1LCJsZWFkXzIiOjUsImxlYWRfMyI6NSwibGVhZF80Ijo1LCJsZWFkXzUiOjV9',
+      workshop: 'eyJmcmVzaF8xIjo0LCJmcmVzaF8yIjo0LCJmcmVzaF8zIjo0LCJmcmVzaF80Ijo0LCJmcmVzaF81Ijo0LCJidWlsZF8xIjozLCJidWlsZF8yIjozLCJidWlsZF8zIjozLCJidWlsZF80IjozLCJidWlsZF81IjozLCJzZWxsXzEiOjMsInNlbGxfMiI6Mywic2VsbF8zIjozLCJzZWxsXzQiOjMsInNlbGxfNSI6MywibGVhZF8xIjozLCJsZWFkXzIiOjMsImxlYWRfMyI6MywibGVhZF80IjozLCJsZWFkXzUiOjN9',
+      fresh: 'eyJmcmVzaF8xIjoyLCJmcmVzaF8yIjoyLCJmcmVzaF8zIjoyLCJmcmVzaF80IjoyLCJmcmVzaF81IjoyLCJidWlsZF8xIjo0LCJidWlsZF8yIjo0LCJidWlsZF8zIjo0LCJidWlsZF80Ijo0LCJidWlsZF81Ijo0LCJzZWxsXzEiOjQsInNlbGxfMiI6NCwic2VsbF8zIjo0LCJzZWxsXzQiOjQsInNlbGxfNSI6NCwibGVhZF8xIjo0LCJsZWFkXzIiOjQsImxlYWRfMyI6NCwibGVhZF80Ijo0LCJsZWFkXzUiOjR9',
+      nurture: 'eyJmcmVzaF8xIjoyLCJmcmVzaF8yIjoyLCJmcmVzaF8zIjoyLCJmcmVzaF80IjoyLCJmcmVzaF81IjoyLCJidWlsZF8xIjoyLCJidWlsZF8yIjoyLCJidWlsZF8zIjoyLCJidWlsZF80IjoyLCJidWlsZF81IjoyLCJzZWxsXzEiOjEsInNlbGxfMiI6MSwic2VsbF8zIjoxLCJzZWxsXzQiOjEsInNlbGxfNSI6MSwibGVhZF8xIjoyLCJsZWFkXzIiOjIsImxlYWRfMyI6MiwibGVhZF80IjoyLCJsZWFkXzUiOjJ9'
+    };
+    function setSamplePre(model, season, name) {
+      try {
+        sessionStorage.setItem('ffb-scorecard-pre', JSON.stringify({
+          firstName: name || 'Sample',
+          email: 'preview@tracyharris.co',
+          model: model || 'coaching',
+          season: season || 'growing'
+        }));
+      } catch (e) {}
+    }
+    document.getElementById('ready').addEventListener('click', function (e) {
+      e.preventDefault(); setSamplePre('coaching', 'growing', 'Sample'); window.location.href = 'results.html#a=' + HASHES.ready;
+    });
+    document.getElementById('workshop').addEventListener('click', function (e) {
+      e.preventDefault(); setSamplePre('coaching', 'building', 'Sample'); window.location.href = 'results.html#a=' + HASHES.workshop;
+    });
+    document.getElementById('fresh').addEventListener('click', function (e) {
+      e.preventDefault(); setSamplePre('coaching', 'growing', 'Sample'); window.location.href = 'results.html#a=' + HASHES.fresh;
+    });
+    document.getElementById('nurture').addEventListener('click', function (e) {
+      e.preventDefault(); setSamplePre('exploring', 'idea', 'Sample'); window.location.href = 'results.html#a=' + HASHES.nurture;
+    });
+  </script>
+</body>
+</html>
